@@ -1,25 +1,28 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { history } from 'react-router-dom';
 
-const RegistrationForm = ({ onRegister }) => {
+const RegistrationForm = () => {
+  const handleRegister = (e) => {
+     
+      e.preventDefault();
+    console.log(e);
+    console.log(e.target[0].value);
+    console.log(e.target[1].value);
+    console.log(e.target[2].value);
+    console.log(e.target[3].value);
+  };
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform validation and register the user
-    // You can add your own validation logic here
-
-    // Pass the registration data to the parent component
-    onRegister({ email, username, contactNumber, password });
-  };
+  
+  
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleRegister}>
         <h2>Registration Form</h2>
         <div>
           <label>Email:</label>

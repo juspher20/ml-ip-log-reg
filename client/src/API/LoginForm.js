@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 
+
 // import { useRouter } from "next/navigation";
-const LoginForm = ({ onLogin }) => {
+const LoginForm = () => {
+  const handleLogin = (loginData) => {
+    console.log(loginData);
+  };
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   // const router = useRouter();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
     // Perform validation and login the user
     // You can add your own validation logic here
 
     // Pass the login data to the parent component
-    onLogin({ username, password });
+    // onLogin({ username, password });
     // router.push("/dashboard");
-  };
+  
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <h1>Login Page</h1>
+      <form onLogin={handleLogin}>
         <br></br>
         <br></br>
         <h2>Login Form</h2>
@@ -64,6 +69,8 @@ const LoginForm = ({ onLogin }) => {
     </div>
   );
 };
+
+
 
 export default LoginForm;
 
