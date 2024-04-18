@@ -20,7 +20,7 @@ const LoginForm = () => {
       console.log("Login Successfully");
       // Assuming `set` is a function you want to call
       set("Login Successfully");
-  
+  }
   
       // Proceed with authentication logic
       // For demonstration purposes, I'm just logging the username and password
