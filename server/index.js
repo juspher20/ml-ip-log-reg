@@ -2,25 +2,35 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const express = require('express')
 const bodyParser = require('body-parser')
+const{check, validateResult} = require('express-validator');
 const app = express()
-const PORT = 4000
+const PORT = 5000
 ;
 
 app.use(bodyParser.urlencoded({ extended: false }))
-
-// parse application/json
 app.use(bodyParser.json())
 
-
-
 app.get('/api/home/',async(req, res)=>{
-    res.send("hi boi")
+  res.send("welcome server-side")
 });
 
 app.listen(PORT, () => {
   console.log(`Server started on port${PORT}`)
 })
 
+
+// Validation middleware
+const validateRegisterInput = [
+  check('username').notEmpty().withMessage('Username is required'),
+  check('email').isEmail().withMessage('Invalid email'),
+  check('contactNumber').notEmpty().withMessage('Contact number is required'),
+  check('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
+];
+
+const validateLoginInput = [
+  check('email').isEmail().withMessage('Invalid email'),
+  check('password').notEmpty().withMessage('Password is required')
+];
 
 
 // Login endpoint
@@ -56,7 +66,7 @@ app.post('/register', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const user = new User({ username, email, password: hashedPassword });
+    const user = new User({ username, email, contactNumber, password: hashedPassword });
     await user.save();
 
     res.status(201).json({ message: 'User registered successfully' });
@@ -65,5 +75,6 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 
