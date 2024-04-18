@@ -4,19 +4,31 @@ import { Link } from "react-router-dom";
 import { history } from 'react-router-dom';
 
 const RegistrationForm = () => {
-  const handleRegister = (e) => {
-     
-      e.preventDefault();
-    console.log(e);
-    console.log(e.target[0].value);
-    console.log(e.target[1].value);
-    console.log(e.target[2].value);
-    console.log(e.target[3].value);
-  };
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [error,set , setError] = useState("");
+
+  const handleRegister = (e) => {
+      e.preventDefault();
+      console.log("Form submitted");
+
+    console.log("Email:", email);
+    console.log("Username:", username);
+    console.log("Contact Number:", contactNumber);
+    console.log("Password:", password);
+  
+    if (!email || !username || !contactNumber || !password) {
+      console.log("Error: Please Enter Your Credentials"); // Check if the condition is met
+      setError("Please Enter Your Credentials");
+    } else {
+      console.log("Registration Successful"); // Check if the condition is met
+      
+      set("Register Successfully");
+    }
+  };
+  
   
   
 
@@ -78,7 +90,7 @@ const RegistrationForm = () => {
           </p>
           <br></br>
           
-          <button type="submit">SUBMIT</button>
+          <button type="register">SUBMIT</button>
         </div>
         <br>
         </br>

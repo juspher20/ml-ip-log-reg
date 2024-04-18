@@ -4,8 +4,8 @@ import RegistrationForm from "./API/RegistrationForm";
 import LoginForm from "./API/LoginForm";
 import "./styles/Form.css";
 import "./styles/App.css";
-import "./styles/table.css"
-import Dashboard from "./components/Dashboard";
+import "./styles/table.css";
+import Dashboard from "./Dashboard";
 
 
 const App = () => {
@@ -43,6 +43,7 @@ const App = () => {
           <Route index path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/tables" element={<tables/>}/>
         </Routes>
         {isLoggedIn ? <Navigate to="/dashboard" />: ""}
       </Router>
@@ -51,3 +52,55 @@ const App = () => {
   );
 };
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

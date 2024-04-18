@@ -4,7 +4,8 @@ const userRouter = require('./routes/users');
 const authMiddleware = require('./middlewares/authMiddleware');
 const formRouter = require('./routes/formRoutes');
 const app = express();
-const port = 4000;
+const port = 5000;
+const cors = require('cors');
 
 app.use(express.json());
 
