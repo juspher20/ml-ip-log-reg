@@ -1,21 +1,24 @@
-// const mongoose = require('mongoose');
+const User = require('/models/User');
 
-// const userSchema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     required: true
-//   },
-//   email: {
-//     type: String,
-//     required: true,
-//     unique: true
-//   },
-//   password: {
-//     type: String,
-//     required: true
-//   }
-// });
+app.post('Register', async (req, res) =>{
+    const {username, email, contactNumber, password} = req.body;
 
-// const User = mongoose.model('User', userSchema);
+    try {
+        const existingUser = await User.findByEmail(email);
+        if(existingUser);
+        return res.status(400).json({message: 'User already exist'});
+    }
 
-// module.exports = User;
+
+ await User.create(username, email, password);
+
+ res.status(201).json({ message: 'User registered successfully' });
+} catch (error) {
+ console.error('Error during registration:', error);
+ res.status(500).json({ message: 'Internal server error' });
+
+ 
+  }
+
+
+});

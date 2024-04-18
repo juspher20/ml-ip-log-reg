@@ -3,15 +3,25 @@ const jwt = require('jsonwebtoken');
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
+const PORT = 4000
+;
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
 
-app.get('/',async(req, res)=>{
-    res.send("welcome to our API")
+
+
+app.get('/api/home/',async(req, res)=>{
+    res.send("hi boi")
+});
+
+app.listen(PORT, () => {
+  console.log(`Server started on port${PORT}`)
 })
+
+
 
 // Login endpoint
 app.post('/login', async (req, res) => {
@@ -55,6 +65,5 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 });
-
 
 
