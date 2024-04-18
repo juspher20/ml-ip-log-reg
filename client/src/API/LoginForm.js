@@ -1,33 +1,32 @@
-import React, { useState } from "react";
-// import API from "./src/API/API.js"; // Import the API module
+import React, { useState } from 'react';
+// import { login } from '../../../server/API/API';
 
 const LoginForm = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error,set, setError] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Already Login")
+    console.log("Already Login");
   
     // Basic validation
     console.log("Username:", username);
     console.log("Password:", password);
 
     if (!username || !password) {
-      console.log("Please enter both username and password");
-  } else {
-      console.log("Login Successfully");
-      // Assuming `set` is a function you want to call
-      set("Login Successfully");
-  }
-  
-      // Proceed with authentication logic
+      setError("Please enter both username and password"); // Corrected console.log statement and set state function
+    } else {
+      console.log("Login Successfully"); // Corrected console.log statement
+      setError("Login Successfully"); // Corrected set state function
+      window.location.href = "/dashboard";// Proceed with authentication logic
       // For demonstration purposes, I'm just logging the username and password
-
-      
     }
   };
+
+
+
+
 
   return (
     <div>

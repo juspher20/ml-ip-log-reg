@@ -24,8 +24,8 @@ const RegistrationForm = () => {
       setError("Please Enter Your Credentials");
     } else {
       console.log("Registration Successful"); // Check if the condition is met
+      window.location.href= "/login";
       
-      set("Register Successfully");
     }
   };
   

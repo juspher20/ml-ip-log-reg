@@ -43,7 +43,10 @@ const App = () => {
           <Route index path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/tables" element={<tables/>}/>
+          {/* <Route path="/tables" element={<tables/>}/> */}
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path = "/login" component={LoginForm}/>
+
         </Routes>
         {isLoggedIn ? <Navigate to="/dashboard" />: ""}
       </Router>
