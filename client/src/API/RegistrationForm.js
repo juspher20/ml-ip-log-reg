@@ -21,7 +21,7 @@ const RegistrationForm = () => {
   
     if (!email || !username || !contactNumber || !password) {
       console.log("Error: Please Enter Your Credentials"); // Check if the condition is met
-      setError("Please Enter Your Credentials");
+      setError("Please Enter your Credentials");
     } else {
       console.log("Registration Successful"); // Check if the condition is met
       window.location.href= "/login";
