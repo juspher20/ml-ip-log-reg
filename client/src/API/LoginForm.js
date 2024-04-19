@@ -1,28 +1,35 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+// import { login } from '../../../server/API/API';
 
-
-// import { useRouter } from "next/navigation";
 const LoginForm = () => {
-  const handleLogin = (loginData) => {
-    console.log(loginData);
-  };
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  // const router = useRouter();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-    // Perform validation and login the user
-    // You can add your own validation logic here
-
-    // Pass the login data to the parent component
-    // onLogin({ username, password });
-    // router.push("/dashboard");
+  const handleLogin = (e) => {
+    e.preventDefault();
+    console.log("Already Login");
   
+    // Basic validation
+    console.log("Username:", username);
+    console.log("Password:", password);
+
+    if (!username || !password) {
+      setError("Please enter both username and password"); // Corrected console.log statement and set state function
+    } else {
+      console.log("Login Successfully"); // Corrected console.log statement
+      setError("Login Successfully"); // Corrected set state function
+      window.location.href = "/dashboard";// Proceed with authentication logic
+      // For demonstration purposes, I'm just logging the username and password
+    }
+  };
+
+
+
+
 
   return (
     <div>
-      <h1>Login Page</h1>
       <form onSubmit={handleLogin}>
         <br></br>
         <br></br>
@@ -46,31 +53,28 @@ const LoginForm = () => {
             required
           />
         </div>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <p>
           Do you have an account?
-          <a href="/register"
-          style={{
-            color:'#ECF8F9',
-            fontFamily:'poppins',
-            fontSize:'Large',
-            textAlign:'center',
-            marginRight:'20px'
-        
-          }}>Register here!</a>
-
-
+          <a
+            href="/register"
+            style={{
+              color: "#ECF8F9",
+              fontFamily: "poppins",
+              fontSize: "Large",
+              textAlign: "center",
+              marginRight: "20px",
+            }}
+          >
+            Register here!
+          </a>
           <br></br>
           <br></br>
-          
         </p>
         <button type="submit">Login</button>
       </form>
-      
     </div>
   );
 };
 
-
-
 export default LoginForm;
-
