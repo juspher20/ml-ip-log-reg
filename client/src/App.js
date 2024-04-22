@@ -7,7 +7,6 @@ import "./styles/App.css";
 import "./styles/table.css";
 import Dashboard from "./Dashboard";
 
-
 const App = () => {
   const [isRegistered, setIsRegistered] = useState(true);
   const [user, setUser] = useState(null);
@@ -43,7 +42,7 @@ const App = () => {
           <Route index path="/login" element={<LoginForm />} />
           <Route path="/register" element={<RegistrationForm />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/tables" element={<tables/>}/> */}
+          
           <Route path="/dashboard" component={Dashboard} />
           <Route path = "/login" component={LoginForm}/>
 

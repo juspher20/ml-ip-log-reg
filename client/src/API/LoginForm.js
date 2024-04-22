@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
-// import { login } from '../../../server/API/API';
+import axios from 'axios';
+import API_URL from '../config';
 
 const LoginForm = () => {
-  const [username, setUsername] = useState('');
+  const[username,setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log("Already Login");
-  
-    // Basic validation
-    console.log("Username:", username);
-    console.log("Password:", password);
 
-    if (!username || !password) {
-      setError("Please enter both username and password"); // Corrected console.log statement and set state function
-    } else {
-      console.log("Login Successfully"); // Corrected console.log statement
-      setError("Login Successfully"); // Corrected set state function
-      window.location.href = "/dashboard";// Proceed with authentication logic
-      // For demonstration purposes, I'm just logging the username and password
+    try {
+      const response = await axios.post(`${"http://localhost:5000//"}/login`, { email, password });
+      const token = response.data.token; // Assuming the server returns a token upon successful login
+      localStorage.setItem('token', token); // Store the token in local storage
+      // Redirect the user to the dashboard page
+      window.location.href = '/dashboard';
+    } catch (error) {
+      setError('Invalid email or password');
     }
-  };
+  };    
+
+
+
+
 
 
 
@@ -30,7 +32,20 @@ const LoginForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin}
+      style={{
+        width:"345px",
+        height:"500px",
+        backgroundColor:"#A40101",
+        borderRadius:"10px",
+        textAlign:"center",
+        color:"white",
+         margin:"150px",
+         marginLeft:"25px",
+        fontFamily: "Poppins",
+      
+        
+      }}>
         <br></br>
         <br></br>
         <h2>Login Form</h2>
@@ -54,6 +69,8 @@ const LoginForm = () => {
           />
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
+        <br>
+        </br>
         <p>
           Do you have an account?
           <a
