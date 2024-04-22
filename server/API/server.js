@@ -9,7 +9,11 @@ const cors = require('cors');
 
 const app = express();
 const port = 5000;
+// Example route
 
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
 app.use(express.json());
 
 // Routes

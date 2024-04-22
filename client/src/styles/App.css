@@ -36,15 +36,5 @@
     transform: rotate(360deg);
   }
 }
-form {
-  width: 345px;
-  height: 550px;
-  background-color: #A40101;
-  border-radius: 10px;
-  text-align: center;
-  color: white;
-  align-items: center;
-  margin: 150px auto; /* Center horizontally */
-  font-family: poppins;
-}
+
 

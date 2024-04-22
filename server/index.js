@@ -9,12 +9,12 @@ const PORT = 5000;
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.get('/api/home/',async(req, res)=>{
-  res.send("welcome server-side")
+app.get('/api',async(req, res)=>{
+  res.send("Hello there,welcome server-side")
 });
 
 app.listen(PORT, () => {
-  console.log(`Server started on port${PORT}`)
+  console.log(`Server is running on port${PORT}`)
 })
 
 
@@ -32,7 +32,7 @@ const validateLoginInput = [
 ];
 
 
-// Login endpoint
+// Assuming this code is in your server setup file (e.g., app.js or index.js)
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -77,3 +77,4 @@ app.post('/register', async (req, res) => {
 
 
 
+ 
