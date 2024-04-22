@@ -23,3 +23,9 @@ exports.checkValidationResult = (req, res, next) => {
   }
   next();
 };
+
+module.exports = {
+  validateRegisterInput,
+  validateLoginInput,
+  checkValidationResult,
+};

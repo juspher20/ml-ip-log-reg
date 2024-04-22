@@ -1,79 +1,72 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const authRouter = require('./src/routes/auth.routes');
+const userRouter = require('./src/routes/user.Routes');
+const authMiddleware = require('./src/middleware/auth.Middleware');
+const formRouter = require('./src//routes/form.Routes');
+const ProductModel = require('./src/models/product.model');
 const{check, validateResult} = require('express-validator');
-const app = express()
+const Product = require('./src/models/product.model');
+const productRoute = require('./src/routes/product.routes')
+const cors = require('cors');
+
+const app = express() 
 const PORT = 5000;
+
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.get('/api/home/',async(req, res)=>{
+app.get('/api',async(req, res)=>{
   res.send("welcome server-side")
 });
 
-app.listen(PORT, () => {
-  console.log(`Server started on port${PORT}`)
+
+
+// routes
+app.use('/api/products', productRoute);
+app.use(cors());
+app.use('/auth', authRouter);
+app.use('/users', authMiddleware, userRouter);
+app.use('/formRoutes', formRouter);
+
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
+
+
+
+
+mongoose.connect("mongodb+srv://raynalynsalonoy:v7jdrpGB2auRRgMO@backenddb.in1vwzb.mongodb.net/Node-API?retryWrites=true&w=majority&appName=BackendDB")
+ .then(() =>{
+   console.log("Connected to Database!");
+   app.listen(PORT, () => {
+    console.log(`Server started on port${PORT}`);
+  });
+  
 })
+  .catch(() =>{
+  console.log("Connection Failed!")
+ });
 
 
-// Validation middleware
-const validateRegisterInput = [
-  check('username').notEmpty().withMessage('Username is required'),
-  check('email').isEmail().withMessage('Invalid email'),
-  check('contactNumber').notEmpty().withMessage('Contact number is required'),
-  check('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long')
-];
-
-const validateLoginInput = [
-  check('email').isEmail().withMessage('Invalid email'),
-  check('password').notEmpty().withMessage('Password is required')
-];
-
-
-// Login endpoint
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-
-  try {
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      return res.status(401).json({ message: 'Invalid password' });
-    }
-
-    const token = jwt.sign({ userId: user._id }, 'yhd$uV4!#qZ8j@*E7');
-
-    res.json({ token });
-  } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-// Registration endpoint
-app.post('/register', async (req, res) => {
-  const { username, email, contactNumber , password } = req.body;
-
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = new User({ username, email, contactNumber, password: hashedPassword });
-    await user.save();
-
-    res.status(201).json({ message: 'User registered successfully' });
-  } catch (error) {
-    console.error('Error during registration:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
 
 
 

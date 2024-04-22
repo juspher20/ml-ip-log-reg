@@ -48,4 +48,7 @@ exports.loginUser = async (req, res) => {
   }
 };
 
-// Other controller functions for updating user profile, getting user details, etc., can be defined similarly
+module.exports = {
+  registerUser,
+  loginUser,
+};
