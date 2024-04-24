@@ -12,7 +12,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${"http://localhost:5000//"}/login`, { email, password });
+      const response = await axios.get(`${"http://localhost:8081"}/login`, { email, password });
       const token = response.data.token; // Assuming the server returns a token upon successful login
       localStorage.setItem('token', token); // Store the token in local storage
       // Redirect the user to the dashboard page

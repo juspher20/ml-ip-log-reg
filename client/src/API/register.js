@@ -1,5 +1,8 @@
+
+
+
 // Assuming this code is in your server setup file (e.g., app.js or index.js)
-app.post('/register', async (req, res) => {
+app.post('http://localhost:8081/register', async (req, res) => {
     const { username, email, contactNumber, password } = req.body;
   
     try {

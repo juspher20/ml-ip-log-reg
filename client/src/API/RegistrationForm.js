@@ -14,7 +14,7 @@ const RegistrationForm = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${"http://localhost:5000/"}/register`, { email, username, contactNumber, password });
+      const response = await axios.get(`${"http://localhost:8081"}/register`, { email, username, contactNumber, password });
       console.log(response.data); // Assuming the server responds with a success message
       // Redirect the user to the login page
       window.location.href = '/login';
