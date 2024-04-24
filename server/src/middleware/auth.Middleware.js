@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const router = express.Router();
-const authMiddleware = require('../middleware/validation.Middleware');
+const authMiddleware = require('../middleware/auth.Middleware');
 
 const authMiddleware = (req, res, next) => {
   
