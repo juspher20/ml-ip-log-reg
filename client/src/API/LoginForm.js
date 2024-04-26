@@ -1,33 +1,29 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import API_URL from '../config';
+// import API_URL from '../config';
 
 const LoginForm = () => {
-  const[username,setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
+    console.log("Already Login");
+  
+    // Basic validation
+    console.log("Username:", username);
+    console.log("Password:", password);
 
-    try {
-      const response = await axios.get(`${"http://localhost:8081"}/login`, { email, password });
-      const token = response.data.token; // Assuming the server returns a token upon successful login
-      localStorage.setItem('token', token); // Store the token in local storage
-      // Redirect the user to the dashboard page
-      window.location.href = '/dashboard';
-    } catch (error) {
-      setError('Invalid email or password');
+    if (!username || !password) {
+      setError("Please enter both username and password"); // Corrected console.log statement and set state function
+    } else {
+      console.log("Login Successfully"); // Corrected console.log statement
+      setError("Login Successfully"); // Corrected set state function
+      window.location.href = "/dashboard";// Proceed with authentication logic
+      // For demonstration purposes, I'm just logging the username and password
     }
-  };    
-
-
-
-
-
-
-
+  };
 
 
   return (
@@ -51,19 +47,21 @@ const LoginForm = () => {
         <h2>Login Form</h2>
         <br></br>
         <div>
-          <label>Username:</label>
+          
           <input
             type="text"
             value={username}
+            placeholder='Username'
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
         <div>
-          <label>Password:</label>
+          
           <input
             type="password"
             value={password}
+            placeholder='Password'
             onChange={(e) => setPassword(e.target.value)}
             required
           />

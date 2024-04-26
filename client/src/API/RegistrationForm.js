@@ -2,73 +2,84 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
-import API_URL from '../config';
+// import API_URL from '../config';
 
 const RegistrationForm = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error,set , setError] = useState("");
 
-  const handleRegister = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get(`${"http://localhost:8081"}/register`, { email, username, contactNumber, password });
-      console.log(response.data); // Assuming the server responds with a success message
-      // Redirect the user to the login page
-      window.location.href = '/login';
-    } catch (error) {
-      setError('Failed to register');
+  const handleRegister = (e) => {
+      e.preventDefault();
+      console.log("Form submitted");
+
+    console.log("Email:", email);
+    console.log("Username:", username);
+    console.log("Contact Number:", contactNumber);
+    console.log("Password:", password);
+  
+    if (!email || !username || !contactNumber || !password) {
+      console.log("Error: Please Enter Your Credentials"); // Check if the condition is met
+      setError("Please Enter Your Credentials");
+    } else {
+      console.log("Registration Successful"); // Check if the condition is met
+      window.location.href= "/login";
+      
     }
-    
   };
+  
 
   return (
     <div>
       <form onSubmit={handleRegister}>
-        <h2>Registration Form</h2>
+        <h2 style={{
+          marginTop:"",
+          alignContent:"center",
+          textAlign:"center",
+          marginBottom:"25%"
+        }}>Registration Form</h2>
         <div>
-          <label>Email:</label>
+          
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            // placeholder='nter your email'
+            placeholder='Email'
             required
           />
         </div>
         <div>
-          <label>Username:</label>
+          
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            // placeholder="Enter your username"
+            placeholder="Username"
             required
           />
         </div>
         <div>
-          <label>Contact No.</label>
+          
           <input
             type="tel"
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
-            // placeholder='Enter your number'
+            placeholder='Number'
             required
           />
         </div>
         <div>
-          <label>Password:</label>
+          
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            // placeholder='Enter your password'
+            placeholder='Password'
             required
           />
-          <br>
-          </br>
+          
           <p>
             By clicking Register, you agree to our
             <Link to ={'/register'}
@@ -85,7 +96,23 @@ const RegistrationForm = () => {
           <br>
           </br>
           <br>
+         
           </br>
+          <Link to={'/login'}
+          style={{
+            color:'#ECF8F9',
+            fontFamily:'poppins',
+            
+            textAlign:'center',
+            marginRight:'20px',
+           
+        
+          }}>
+            Already have an account?</Link>
+            <br>
+            </br>
+            <br>
+            </br>
           <button type="register">SUBMIT</button>
         </div>
         <br>
@@ -95,16 +122,11 @@ const RegistrationForm = () => {
         <div>
           <br>
           </br>
-          <Link to={'/login'}
-          style={{
-            color:'#ECF8F9',
-            fontFamily:'poppins',
-            
-            textAlign:'center',
-            marginRight:'20px'
+          
         
-          }}>Already have an account?</Link>
-          <br></br>
+          <br>
+          </br>
+         
         </div>
       </form>
     </div>

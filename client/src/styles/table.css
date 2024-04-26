@@ -1,11 +1,12 @@
 /* CSS for the table in Dashboard component */
 table {
-    width: 300%;
+    width: 400%;
+    height: 700px ;
     border-collapse: collapse;
-    margin-top: 20px;
+   
     align-items: center;
-    margin-top: -200%;
-    margin-left: -88%;
+    margin-top: -231%;
+    margin-left: -145%;
   }
   
   th, td {

@@ -26,7 +26,9 @@ input[type='password'] {
   padding: 5px;
   font-family: poppins;
   border: shadow;
-  font-size: 16px;
+  font-size: large;
+  font-weight: 500;
+ 
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
@@ -51,8 +53,8 @@ div {
 }
 
 form {
-  width: 345px;
-  height: 600px;
+  width: 355px;
+  height: 650px;
   background-color: #A40101;
   border-radius: 10px;
   text-align: center;
@@ -66,4 +68,6 @@ form {
   font-weight: bold;
 } */
 
-  
+th{
+  font-weight: bold;
+}

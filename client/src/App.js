@@ -45,6 +45,7 @@ const App = () => {
           
           <Route path="/dashboard" component={Dashboard} />
           <Route path = "/login" component={LoginForm}/>
+          <Route path="/register" component={RegistrationForm}></Route>
 
         </Routes>
         {isLoggedIn ? <Navigate to="/dashboard" />: ""}
