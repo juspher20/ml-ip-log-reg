@@ -1,5 +1,36 @@
+import React, { useState} from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from 'axios'
+
+
+function Login (){
+    const [email,setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    function handleSubmit(event) {
+      event.preventDefault();
+      axios.post('http://localhost:8081/login',{email, password})
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Assuming this code is in your server setup file (e.g., app.js or index.js)
-app.post('/login', async (req, res) => {
+app.post('http://localhost:8081/login', async (req, res) => {
     const { email, password } = req.body;
   
     try {
